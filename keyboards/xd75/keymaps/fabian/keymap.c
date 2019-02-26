@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
  * ,--------------------------------------------------------------------------------------------------------.
- * |      |   1  |   2  |   3  |   4  |   5  |      |      |      |   6  |   7  |   8  |   9  |   0  |      |
+ * | Grv  |   1  |   2  |   3  |   4  |   5  |      |      |      |   6  |   7  |   8  |   9  |   0  | F23  |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |      |      |      |   Y  |   U  |   I  |   O  |   P  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
@@ -64,15 +64,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |      |      |      |   N  |   M  |   ,  |   .  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | Meh  | Alt  | GUI  |Lower |Space |      |      |      | Tab  |Raise | GUI  |AltGr | Umlt | Ctrl |
+ * | Ctrl | Meh  | GUI  | Alt  |Lower |Space |      |      |      | Tab  |Raise |AltGr | GUI  | F24  | Ctrl |
  * `--------------------------------------------------------------------------------------------------------'
  */
 [_QWERTY] = {
-  { _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, _______, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______ },
-  { HPR_TAB, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______, _______, _______, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC },
-  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______, _______, _______, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT },
+  { MEH_GRV, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_F13,  KC_F14,  KC_F15,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_F23  },
+  { HPR_TAB, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_F16,  KC_F17,  KC_F18,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC },
+  { CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_F19,  KC_F20,  KC_F21,  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT },
   { SFT_BSP, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    _______, _______, _______, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT },
-  { KC_LCTL, MEH_GRV, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  _______, _______, _______, HPR_TAB, RAISE,   KC_RGUI, KC_RALT, UMLAUT,  KC_RCTL }
+  { KC_LGUI, MEH_GRV, KC_LGUI, KC_LALT, LOWER,   KC_SPC,  _______, _______, _______, KC_SPC,  RAISE,   KC_RALT, KC_RGUI, KC_F24,  KC_RGUI }
 },
 
 /* Colemak
