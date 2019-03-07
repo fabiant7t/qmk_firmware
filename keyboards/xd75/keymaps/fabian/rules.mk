@@ -31,5 +31,5 @@ UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight. 
 SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
-AUTO_SHIFT_ENABLE = yes     # Tap a key slightly longer and get its shifted state
+AUTO_SHIFT_ENABLE = no      # Tap a key slightly longer and get its shifted state
 AUTO_SHIFT_MODIFIERS = no
