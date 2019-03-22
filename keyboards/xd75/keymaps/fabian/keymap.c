@@ -17,9 +17,15 @@ enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   COLEMAK,
   LOWER,
-  RAISE
+  RAISE,
+  DYNAMIC_MACRO_RANGE,
 };
 
+#include "dynamic_macro.h"
+
+#define RECB DYN_REC_START1
+#define RECE DYN_REC_STOP
+#define RECP DYN_MACRO_PLAY1
 #define CTL_ESC CTL_T(KC_ESC)  // Tap for Escape, hold for Control
 #define HPR_TAB ALL_T(KC_TAB)  // Tap for Tab, hold for Hyper (Super+Ctrl+Alt+Shift)
 #define MEH_GRV MEH_T(KC_GRV)  // Tap for Backtick, hold for Meh (Ctrl+Alt+Shift)
@@ -136,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |Qwerty|Colemk|      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |      |      |      | RecB | RecE | RecP |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
  * `--------------------------------------------------------------------------------------------------------'
@@ -145,13 +151,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ },
   { _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET,   _______ },
   { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QWERTY,  COLEMAK, _______, _______, _______ },
-  { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ },
+  { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RECB,    RECE,    RECP,    _______, _______ },
   { _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ }
 }
 };
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_record_dynamic_macro(keycode, record)) {
+    return false;
+  }
+
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
