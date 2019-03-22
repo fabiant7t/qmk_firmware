@@ -3,28 +3,26 @@
 extern keymap_config_t keymap_config;
 
 enum custom_layers {
-  _COLEMAK,
+  _BASE,
   _QWERTY,
+  _COLEMAK,
   _LOWER,
   _RAISE,
-  _MOUSECURSOR,
   _ADJUST,
 };
 
 enum custom_keycodes {
-  COLEMAK = SAFE_RANGE,
-  QWERTY,
+  QWERTY = SAFE_RANGE,
+  COLEMAK,
   LOWER,
   RAISE,
-  MOUSECURSOR,
   ADJUST,
   DYNAMIC_MACRO_RANGE,
 };
 
 #include "dynamic_macro.h"
 
-#define KC_ KC_TRNS
-
+#define KC__ KC_TRNS
 #define KC_COLE COLEMAK
 #define KC_LOWR LOWER
 #define KC_QWER QWERTY
@@ -33,97 +31,96 @@ enum custom_keycodes {
 #define KC_RECE DYN_REC_STOP
 #define KC_RECP DYN_MACRO_PLAY1
 #define KC_RSET RESET
-
-#define KC_CTLE CTL_T(KC_ESC)             // Tap for Escape, hold for Control
+#define KC_MEHG MEH_T(KC_GRV)             // Tap for Backtick, hold for Meh (Ctrl+Alt+Shift)
 #define KC_HTAB ALL_T(KC_TAB)             // Tap for Tab, hold for Hyper (Super+Ctrl+Alt+Shift)
+#define KC_CTLE CTL_T(KC_ESC)             // Tap for Escape, hold for Control
 #define KC_SBSP SFT_T(KC_BSPC)            // Tap for Backspace, hold for Shift
 #define KC_SENT KC_SFTENT                 // Tap for Enter, hold for Shift
-#define KC_TGMC TG(_MOUSECURSOR)          // Toggle MOUSECURSOR layer
-#define KC_SPMC LT(_MOUSECURSOR, KC_SPC)  // Tap for Space, hold for MOUSECURSOR layer
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+  [_BASE] = LAYOUT_kc(
+  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
+     MEHG, 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,MINS,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+     HTAB, _  , _  , _  , _  , _  ,                _  , _  , _  , _  , _  ,BSPC,
+  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
+     CTLE, _  , _  , _  , _  , _  ,                _  , _  , _  , _  , _  ,QUOT,
+  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
+     SBSP, _  , _  , _  , _  , _  , _  ,      _  , _  , _  ,COMM,DOT ,SLSH,SENT,
+  //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
+                       LALT,LOWR,SPC ,         SPC ,RASE,RALT
+  //                  `----+----+----'        `----+----+----'
+  ),
+
   [_QWERTY] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-     MEH , 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,TGMC,
+      _  , _  , _  , _  , _  , _  ,                _  , _  , _  , _  , _  , _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     HTAB, Q  , W  , E  , R  , T  ,                Y  , U  , I  , O  , P  ,BSPC,
+      _  , Q  , W  , E  , R  , T  ,                Y  , U  , I  , O  , P  , _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     CTLE, A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN,QUOT,
+      _  , A  , S  , D  , F  , G  ,                H  , J  , K  , L  ,SCLN, _  ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     SBSP, Z  , X  , C  , V  , B  ,LALT,     RALT, N  , M  ,COMM,DOT ,SLSH,SENT,
+      _  , Z  , X  , C  , V  , B  , _  ,      _  , N  , M  , _  , _  , _  , _  ,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-                       LGUI,LOWR,SPMC,         HTAB,RASE,RGUI
+                        _  , _  , _  ,          _  , _  , _
   //                  `----+----+----'        `----+----+----'
   ),
 
   [_COLEMAK] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-     MEH , 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,TGMC,
+      _  , _  , _  , _  , _  , _  ,                _  , _  , _  , _  , _  , _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     HTAB, Q  , W  , F  , P  , G  ,                J  , L  , U  , Y  ,SCLN,BSPC,
+      _  , Q  , W  , F  , P  , G  ,                J  , L  , U  , Y  ,SCLN, _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     CTLE, A  , R  , S  , T  , D  ,                H  , N  , E  , I  , O  ,QUOT,
+      _  , A  , R  , S  , T  , D  ,                H  , N  , E  , I  , O  , _  ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     SBSP, Z  , X  , C  , V  , B  ,LALT,     RALT, K  , M  ,COMM,DOT ,SLSH,SENT,
+      _  , Z  , X  , C  , V  , B  , _  ,      _  , K  , M  , _  , _  , _  , _  ,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-                       LGUI,LOWR,SPMC,         HTAB,RASE,RGUI
+                        _  , _  , _  ,          _  , _  , _
   //                  `----+----+----'        `----+----+----'
   ),
 
   [_LOWER] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         , F1 , F2 , F3 , F4 , F5 ,                F6 , F7 , F8 , F9 ,F10 ,    ,
+      _  , _  , _  , _  , _  , _  ,                _  , _  , _  , _  , _  , _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     TILD,EXLM, AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,LPRN,RPRN,DEL ,
+     TILD,EXLM, AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,LPRN,RPRN, _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     GRV , F1 , F2 , F3 , F4 , F5 ,                F6 ,UNDS,PLUS,LCBR,RCBR,PIPE,
+     DEL , F1 , F2 , F3 , F4 , F5 ,                F6 ,UNDS,PLUS,LCBR,RCBR,PIPE,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         , F7 , F8 , F9 ,F10 ,F11 ,    ,         ,F12 ,MS_L,MS_D,MS_U,MS_R,BTN1,
+      _  , F7 , F8 , F9 ,F10 ,F11 , _  ,      _  ,F12 ,MS_L,MS_D,MS_U,MS_R,BTN1,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,             ,    ,
+                        _  , _  , _   ,          _  , _  , _
   //                  `----+----+----'        `----+----+----'
   ),
 
   [_RAISE] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
+      _  , _  , _  , _  , _  , _  ,                _  , _  , _  , _  , _  , _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     TILD, 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  ,    ,
+     GRV , 1  , 2  , 3  , 4  , 5  ,                6  , 7  , 8  , 9  , 0  , _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     GRV , F1 , F2 , F3 , F4 , F5 ,                F6 ,MINS,EQL ,LBRC,RBRC,BSLS,
+     DEL , F1 , F2 , F3 , F4 , F5 ,                F6 ,MINS,EQL ,LBRC,RBRC,BSLS,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         , F7 , F8 , F9 ,F10 ,F11 ,    ,         ,F12 ,LEFT,DOWN, UP ,RGHT,BTN2,
+      _  , F7 , F8 , F9 ,F10 ,F11 , _  ,      _  ,F12 ,LEFT,DOWN, UP ,RGHT,BTN2,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,             ,    ,
-  //                  `----+----+----'        `----+----+----'
-  ),
-
-  [_MOUSECURSOR] = LAYOUT_kc(
-  //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
-  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    , UP ,    ,    ,               WH_D,WH_R,MS_U,ACL0,ACL1,ACL2,
-  //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,LEFT,DOWN,RGHT,    ,               WH_L,MS_L,MS_D,MS_R,BTN1,BTN2,
-  //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,    ,         ,WH_U,LEFT,DOWN, UP ,RGHT,BTN3,
-  //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,             ,    ,
+                        _  , _  , _   ,          _  , _  , _
   //                  `----+----+----'        `----+----+----'
   ),
 
   [_ADJUST] = LAYOUT_kc(
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
-         ,    ,    ,    ,    ,    ,                   ,    ,    ,    ,    ,    ,
+      _  , _  , _  , _  , _  , _  ,                _  , _  , _  , _  , _  , _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,RSET,    ,    ,    ,    ,                   ,    ,    ,    ,RSET,    ,
+      _  ,RSET, _  , _  , _  , _  ,                _  , _  , _  , _  ,RSET, _  ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,                   ,QWER,COLE,    ,    ,    ,
+      _  , _  , _  , _  , _  , _  ,                _  ,QWER,COLE, _  , _  , _  ,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-         ,    ,    ,    ,    ,    ,    ,         ,    ,    ,RECB,RECE,RECP,CAPS,
+      _  , _  , _  , _  , _  , _  , _  ,      _  , _  ,RECB,RECE,RECP, _  , _  ,
   //`----+----+----+----+----+----+----/    \----+----+----+----+----+----+----'
-                           ,    ,    ,             ,    ,
+                        _  , _  , _  ,          _  , _  , _
   //                  `----+----+----'        `----+----+----'
   )
 };
