@@ -6,7 +6,6 @@ enum custom_layers {
   _BASE,
   _QWERTY,
   _COLEMAK,
-  _DVORAK,
   _LOWER,
   _RAISE,
   _ADJUST
@@ -15,19 +14,21 @@ enum custom_layers {
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   COLEMAK,
-  DVORAK,
   LOWER,
   RAISE,
-  BACKLIT
+  DYNAMIC_MACRO_RANGE,
 };
 
+#include "dynamic_macro.h"
+
+#define RECB DYN_REC_START1
+#define RECE DYN_REC_STOP
+#define RECP DYN_MACRO_PLAY1
 #define CTL_ESC CTL_T(KC_ESC)  // Tap for Escape, hold for Control
 #define HPR_TAB ALL_T(KC_TAB)  // Tap for Tab, hold for Hyper (Super+Ctrl+Alt+Shift)
 #define MEH_GRV MEH_T(KC_GRV)  // Tap for Backtick, hold for Meh (Ctrl+Alt+Shift)
 #define SFT_BSP SFT_T(KC_BSPC) // Tap for Backspace, hold for Shift
 #define SFT_ENT SFT_T(KC_ENT)  // Tap for Enter, hold for Shift
-#define SFT_SPC SFT_T(KC_SPC)  // Tap for Space, hold for Shift
-#define UMLAUT  RALT(KC_U)     // Combine Alt and U
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -85,24 +86,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LCTL, MEH_GRV, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  HPR_TAB, RAISE,   KC_RGUI, KC_RALT, UMLAUT,  KC_RCTL \
 ),
 
-/* Dvorak
- * ,-----------------------------------------------------------------------------------.
- * | Tab  |   "  |   ,  |   .  |   P  |   Y  |   F  |   G  |   C  |   R  |   L  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc  |   A  |   O  |   E  |   U  |   I  |   D  |   H  |   T  |   N  |   S  |  /   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   ;  |   Q  |   J  |   K  |   X  |   B  |   M  |   W  |   V  |   Z  |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | Meh  | Alt  | GUI  |Lower |Space | Tab  |Raise | GUI  |AltGr | Umlt | Ctrl |
- * `-----------------------------------------------------------------------------------'
- */
-[_DVORAK] = LAYOUT( \
-  HPR_TAB, KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC, \
-  CTL_ESC, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH, \
-  SFT_BSP, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    SFT_ENT , \
-  KC_LCTL, MEH_GRV, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  HPR_TAB, RAISE,   KC_RGUI, KC_RALT, UMLAUT,  KC_RCTL \
-),
-
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
@@ -144,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      | Reset|      |      |      |      |      |      |      |      | Reset|  Del |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |Aud on|Audoff|AGnorm|AGswap|Qwerty|Colemk|Dvorak|      |      |
+ * |      |      |      |Aud on|Audoff|AGnorm|AGswap|Qwerty|Colemk|      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -153,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT( \
   _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, RESET,   KC_DEL , \
-  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______, \
+  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, _______, _______, _______, \
   _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
@@ -162,6 +145,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_record_dynamic_macro(keycode, record)) {
+    return false;
+  }
+
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
@@ -172,12 +159,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case COLEMAK:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_COLEMAK);
-      }
-      return false;
-      break;
-    case DVORAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_DVORAK);
       }
       return false;
       break;
