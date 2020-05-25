@@ -27,6 +27,7 @@ enum custom_keycodes {
 #define RECE DYN_REC_STOP
 #define RECP DYN_MACRO_PLAY1
 #define CTL_ESC CTL_T(KC_ESC)  // Tap for Escape, hold for Control
+#define CTL_QUO CTL_T(KC_QUOT) // Tap for Quote, hold for Control
 #define HPR_TAB ALL_T(KC_TAB)  // Tap for Tab, hold for Hyper (Super+Ctrl+Alt+Shift)
 #define MEH_GRV MEH_T(KC_GRV)  // Tap for Backtick, hold for Meh (Ctrl+Alt+Shift)
 #define SFT_BSP SFT_T(KC_BSPC) // Tap for Backspace, hold for Shift
@@ -50,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = {
   { MEH_GRV, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______, _______, _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS },
   { HPR_TAB, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_BSPC },
-  { CTL_ESC, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_QUOT },
+  { CTL_ESC, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, CTL_QUO },
   { SFT_BSP, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT },
   { KC_LCTL, MEH_GRV,  KC_LGUI, KC_LALT, LOWER,  KC_SPC,  _______, _______, _______, KC_SPC,  RAISE,   KC_RALT, KC_RGUI, KC_F24,  KC_RCTL }
 },
