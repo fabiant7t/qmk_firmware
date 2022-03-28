@@ -35,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 - AMJ40 (Aug 2017)
 - Planck (Sep 2017)
 - Iris (May 2018)
+- NP21 (Jun 2018)
 - Planck Light (Aug 2018)
 - Nyquist (May 2019)
 - [Dactyl Manuform](https://github.com/fabiant7t/dactyl-manuform) (March 2022)
