@@ -16,6 +16,7 @@
 #define LOWER MO(_LOWER)
 #define QWERTY TO(_QWERTY)
 #define COLEMAK TO(_COLEMAK)
+#define NAVIG TG(_NAVIG)
 
 // The keyboards I build and use are ortholinear.
 // Their layout differs, some are 4x12, 5x12, 5x15 or even split (2x4x6 and 2x5x6).
@@ -35,8 +36,8 @@
 #define MOD_R3 SFT_ENT
 
 // Lower thumb cluster
-#define TC_L5_0 MU_TOG
-#define TC_L5_1 MU_MOD
+#define TC_L5_0 _______
+#define TC_L5_1 NAVIG
 #define TC_L6_0 _______
 #define TC_L6_1 _______
 #define TC_R5_0 KC_RALT
@@ -88,7 +89,7 @@
 
 #define ____________________ADJUST_L0____________________ _______, _______, _______, _______, _______, _______
 #define ____________________ADJUST_L1____________________ _______, RESET,   _______, _______, _______, _______
-#define ____________________ADJUST_L2____________________ _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM
+#define ____________________ADJUST_L2____________________ _______, MU_TOG,  MU_MOD,  AU_ON,   AU_OFF,  AG_NORM
 #define ____________________ADJUST_L3____________________ _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON
 
 #define ____________________ADJUST_R0____________________ _______, _______, _______, _______, _______, _______
@@ -98,3 +99,13 @@
 
 #define ___________________GENERIC_L4____________________ KC_LCTL, MEH_GRV, KC_LGUI, KC_LALT, LOWER,   KC_SPC
 #define ___________________GENERIC_R4____________________ SFT_ENT, RAISE,   KC_RALT, KC_RGUI, UMLAUT,  KC_RCTL
+
+#define ____________________NAVIG_L0_____________________ _______, _______, _______, _______, _______, _______
+#define ____________________NAVIG_L1_____________________ _______, _______, _______, KC_UP,   _______, _______
+#define ____________________NAVIG_L2_____________________ _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______
+#define ____________________NAVIG_L3_____________________ _______, _______, _______, _______, _______, _______
+
+#define ____________________NAVIG_R0_____________________ _______, _______, _______, _______, _______, _______
+#define ____________________NAVIG_R1_____________________ KC_WH_D, KC_BTN1, KC_MS_U, KC_BTN2, _______, _______
+#define ____________________NAVIG_R2_____________________ _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______
+#define ____________________NAVIG_R3_____________________ KC_WH_U, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______

@@ -8,7 +8,8 @@ enum userspace_layers {
     _COLEMAK,
     _LOWER,
     _RAISE,
-    _ADJUST
+    _ADJUST,
+    _NAVIG
 };
 
 #include "wrappers.h"
