@@ -12,6 +12,8 @@ layer_state_t layer_state_set_user (layer_state_t state) {
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-  autoshift_disable();
+  #ifdef AUTO_SHIFT_ENABLE
+    autoshift_disable();
+  #endif
   return state;
 }

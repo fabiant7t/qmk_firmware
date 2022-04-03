@@ -35,8 +35,8 @@
 #define MOD_R3 SFT_ENT
 
 // Lower thumb cluster
-#define TC_L5_0 _______
-#define TC_L5_1 _______
+#define TC_L5_0 MU_TOG
+#define TC_L5_1 MU_MOD
 #define TC_L6_0 _______
 #define TC_L6_1 _______
 #define TC_R5_0 KC_RALT
