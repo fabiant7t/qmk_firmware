@@ -98,7 +98,7 @@
 #define ____________________ADJUST_R3____________________ MI_OFF,  RGB_MOD, RGB_TOG, _______, _______, _______
 
 #define ___________________GENERIC_L4____________________ KC_LCTL, MEH_GRV, KC_LGUI, KC_LALT, LOWER,   KC_SPC
-#define ___________________GENERIC_R4____________________ SFT_ENT, RAISE,   KC_RALT, KC_RGUI, UMLAUT,  KC_RCTL
+#define ___________________GENERIC_R4____________________ SFT_BSP, RAISE,   KC_RALT, KC_RGUI, UMLAUT,  KC_RCTL
 
 #define ____________________NAVIG_L0_____________________ _______, _______, _______, _______, _______, _______
 #define ____________________NAVIG_L1_____________________ _______, _______, _______, KC_UP,   _______, _______
