@@ -73,7 +73,7 @@
 #define ____________________LOWER_L3_____________________ _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
 
 #define ____________________LOWER_R0_____________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS
-#define ____________________LOWER_R1_____________________ KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC
+#define ____________________LOWER_R1_____________________ KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL
 #define ____________________LOWER_R2_____________________ KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE
 #define ____________________LOWER_R3_____________________ KC_F12,  KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, KC_BTN1
 
@@ -83,7 +83,7 @@
 #define ____________________RAISE_L3_____________________ _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11
 
 #define ____________________RAISE_R0_____________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS
-#define ____________________RAISE_R1_____________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC
+#define ____________________RAISE_R1_____________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL
 #define ____________________RAISE_R2_____________________ KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS
 #define ____________________RAISE_R3_____________________ KC_F12,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_BTN2
 
