@@ -3,8 +3,8 @@
 
 // Custom key behavior
 #define CTL_ESC CTL_T(KC_ESC)  // Tap for Escape, hold for Control
-#define ALT_SPC LALT_T(KC_SPC) // Tap for Space, hold for Alt
-#define HPR_TAB ALL_T(KC_TAB)  // Tap for Tab, hold for Hyper (Super+Ctrl+Alt+Shift)
+#define HPR_SPC HYPR_T(KC_SPC) // Tap for Space, hold for Hyper (Super+Ctrl+Alt+Shift)
+#define HPR_TAB HYPR_T(KC_TAB) // Tap for Tab, hold for Hyper (Super+Ctrl+Alt+Shift)
 #define MEH_GRV MEH_T(KC_GRV)  // Tap for Backtick, hold for Meh (Ctrl+Alt+Shift)
 #define SFT_BSP SFT_T(KC_BSPC) // Tap for Backspace, hold for Shift
 #define SFT_ENT SFT_T(KC_ENT)  // Tap for Enter, hold for Shift
@@ -97,8 +97,8 @@
 #define ____________________ADJUST_R2____________________ KC_ASTR, QWERTY,  COLEMAK, _______, _______, _______
 #define ____________________ADJUST_R3____________________ MI_OFF,  RGB_MOD, RGB_TOG, _______, _______, _______
 
-#define ___________________GENERIC_L4____________________ KC_LCTL, MEH_GRV, KC_LGUI, KC_LALT, LOWER,   ALT_SPC
-#define ___________________GENERIC_R4____________________ ALT_SPC, RAISE,   KC_RALT, KC_RGUI, UMLAUT,  KC_RCTL
+#define ___________________GENERIC_L4____________________ KC_LCTL, MEH_GRV, KC_LGUI, KC_LALT, LOWER,   HPR_SPC
+#define ___________________GENERIC_R4____________________ HPR_SPC, RAISE,   KC_RALT, KC_RGUI, UMLAUT,  KC_RCTL
 
 #define ____________________NAVIG_L0_____________________ _______, _______, _______, _______, _______, _______
 #define ____________________NAVIG_L1_____________________ _______, _______, _______, KC_UP,   _______, _______
