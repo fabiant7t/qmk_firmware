@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #undef PRODUCT
-#define PRODUCT Dactyl Manuform 4x6 (fabian)
+#define PRODUCT "Dactyl Manuform 4x6 (fabian)"
 
 // #define MATRIX_ROW_PINS { F7, B1, B3, B2, B6 }
 // #define MATRIX_COL_PINS { D4, C6, D7, E6, B4, B5 }
